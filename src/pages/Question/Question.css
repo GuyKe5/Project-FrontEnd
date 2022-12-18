@@ -1,0 +1,15 @@
+.Question{
+    display:flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+
+}
+.Text{
+    width: 50%;
+    height: 100%;
+    border-left: solid 3px black;
+}
+.Code{
+    width: 50%;
+    height: 100%;
+}

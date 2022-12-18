@@ -1,0 +1,31 @@
+.Home{
+    height: 100%;
+    background-color: #1b1c27;
+    padding-top: 10px;
+}
+
+.CardsWrap{
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #3f4047;
+    /* background-color: red; */
+    align-items:baseline;
+    justify-content:right;
+    margin-right:5%;
+    margin-left:5%;
+    border: 1px solid #212529;
+    margin-bottom: 2%;
+    
+}
+.Card{
+  width: 18rem;
+  background:#28293d ;
+  color:white;
+  margin-right:5%;
+  height: 100%;
+}
+h2{
+  text-align: center;
+  color:white;
+  width:10%;
+}
