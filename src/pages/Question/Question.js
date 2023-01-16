@@ -5,7 +5,7 @@ function Question(props){
     return(
         <div className="Question">
             <div className="Code">
-               console.writeLine() 
+            <input type="file"/>
             </div>
 
             <div className="Text">

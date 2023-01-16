@@ -3,6 +3,7 @@ import Home from  "../pages/Home/Home"
 import Question from "../pages/Question/Question"
 import ListQuestions from "../pages/ListQuestions/ListQuestions"
 import NavBar from"../Components/NavBar"
+import Login from"../pages/Login/Login"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Question/:id" element ={<Question/>} />
         <Route path="/ListQuestions" element ={<ListQuestions/>} />
+        <Route path="/Login" element ={<Login/>} />
       </Routes>
 
     </div>
