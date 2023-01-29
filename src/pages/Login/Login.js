@@ -1,7 +1,10 @@
     import React, { useState, useEffect } from 'react';
+    import { Navigate } from 'react-router-dom';
+    import { useNavigate } from 'react-router-dom'
     import "./Login.css"
 
-    function Login(){
+    function Login(props){
+        const navigate = useNavigate();
         const [formData, setFormData] = useState({ username: '', password: '' });
         const[ResponseData,setResponseData]= useState()
         function handleChange(event) {
@@ -26,7 +29,15 @@
             
             const response1 = await response.json();
             setResponseData(response1);
-            console.log("resposne: ");console.log(response1);
+            if(response1!=null&&!response1.hasOwnProperty('error')){
+           props.setUser(ResponseData);
+          
+           navigate("/");
+
+            }
+            console.log("resposne: ");
+            console.log(response1);
+            console.log(props.User)
         }
         
 

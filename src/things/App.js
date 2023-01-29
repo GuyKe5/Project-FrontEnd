@@ -9,7 +9,7 @@ import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
 import React from "react";
 function App() {
-  const[User,setUserId] = React.useState({
+  const[User,setUser] = React.useState({
     UserId:"",
     UserName:"",
     Password:"",
@@ -20,10 +20,10 @@ function App() {
       
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home UserId={User}/>} />
+        <Route path="/" element={<Home User={User}/>} />
         <Route path="/Question/:id" element ={<Question/>} />
         <Route path="/ListQuestions" element ={<ListQuestions/>} />
-        <Route path="/Login" element ={<Login/>} />
+        <Route path="/Login" element ={<Login User={User} setUser={setUser}/>} />
       </Routes>
 
     </div>
