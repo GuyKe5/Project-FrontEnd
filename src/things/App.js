@@ -1,7 +1,7 @@
 import "./App.css";
 import Home from  "../pages/Home/Home"
 import Question from "../pages/Question/Question"
-import ListQuestions from "../pages/ListQuestions/ListQuestions"
+import ListCourses from "../pages/ListCourses/ListCourses"
 import NavBar from"../Components/NavBar"
 import Login from"../pages/Login/Login"
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
         <Route path="/Question/:id" element ={<Question/>} />
-        <Route path="/ListQuestions" element ={<ListQuestions/>} />
+        <Route path="/ListCourses" element ={<ListCourses/>} />
         <Route path="/Login" element ={<Login User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
       </Routes>
 

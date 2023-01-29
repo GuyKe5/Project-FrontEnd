@@ -1,12 +1,12 @@
-import Qcard from "../../Components/Qcard"
-import QuestionCardsPlace from "../../Components/QuestionCardsPlace";
+import Qcard from "../../Components/Ccard"
+import CourseCardsPlace from "../../Components/CourseCardsPlace";
 import "./Home.css";
 function Home(props) {
-    { if(props.IsLoggedIn){console.log(props.User);console.log(props.User.username)}}
+    { if(props.IsLoggedIn){console.log("user: "+props.User);console.log(props.User.username)}}
     return (
         <div className="Home">
-          {props.IsLoggedIn&&<h2>hello {props.User.user.username}</h2>}
-            <QuestionCardsPlace/>
+          {props.IsLoggedIn&&<h2>hello {props.User.username}</h2>}
+            <CourseCardsPlace/>
                            
         </div>
     );

@@ -30,17 +30,14 @@
             const response1 = await response.json();
             setResponseData(response1);
             if(response1!=null&&!response1.hasOwnProperty('error')){
+                
+               
+                props.setUser(JSON.parse(response1.user)[0]);
                 props.setIsLoggedIn(true)
-                console.log(response1)
-                console.log(props)
-           props.setUser(response1);
-          console.log(props.User)
-           navigate("/");
+                navigate("/");
+
 
             }
-            console.log("resposne: ");
-            console.log(response1);
-            console.log(props.User)
         }
         
 

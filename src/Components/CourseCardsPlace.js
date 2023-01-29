@@ -1,6 +1,6 @@
-import Qcard from "./Qcard";
+import Ccard from "./Ccard";
 import "./ComponentsCss.css"
-function  QuestionCardsPlace(props){
+function  CourseCardsPlace(props){
 
 
 
@@ -8,10 +8,10 @@ function  QuestionCardsPlace(props){
         
         <div className="CardsWrap">
                
-            <Qcard />
-            <Qcard />
+            <Ccard />
+            <Ccard />
            <h2>כותרת</h2>
             </div>
     )
 }
-export default QuestionCardsPlace;
+export default CourseCardsPlace;
