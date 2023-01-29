@@ -2,10 +2,8 @@
     import "./Login.css"
 
     function Login(){
-        console.log("in login")
         const [formData, setFormData] = useState({ username: '', password: '' });
-
-            const[ResponseData,setResponseData]= useState()
+        const[ResponseData,setResponseData]= useState()
         function handleChange(event) {
             const { name, value } = event.target;
             setFormData(prevData => ({ ...prevData, [name]: value }));
@@ -13,17 +11,22 @@
         
         async function handleSubmit(event) {    
             event.preventDefault();
-            const response = await fetch('https://localhost:44349/web_service/WebService1.asmx?op=GetUserData', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: 'example_username', password: 'example_password' })
+            const response = await fetch('https://localhost:7162/api/Values', {
+                method: 'POST',
+                headers: {
+                    'accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                // body: '{\n"username":"1",\n"password":"1"\n}',
+                body: JSON.stringify({
+                    'username': formData.username,
+                    'password': formData.password
+                })
             });
-            const json = await response.json();
-            setResponseData(json);
-            console.log(json)   
-            console.log("hello")
+            
+            const response1 = await response.json();
+            setResponseData(response1);
+            console.log("resposne: ");console.log(response1);
         }
         
 
@@ -33,7 +36,7 @@
         return(
 
             <div className="Login">
-                
+                <form onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <div className="space">
                 <input type="text" name="username" value={formData.username} onChange={handleChange} />
@@ -46,6 +49,8 @@
                 
                 </div>
                 <button type="submit">Submit</button>
+                <div style={{ color: 'red'  }}>{ResponseData!=null&&ResponseData.hasOwnProperty('error') && ResponseData.error}</div>
+                </form>
             </div>
         )
     }
