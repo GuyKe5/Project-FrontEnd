@@ -3,12 +3,19 @@
     flex-wrap: nowrap;
     background-color: #3f4047;
     /* background-color: red; */
-    align-items:baseline;
+    align-items:center;
     justify-content:right;
     margin-right:5%;
     margin-left:5%;
     padding-Right: 5%;
     border: 1px solid #212529;
     margin-bottom: 2%;
+    height: 22%;
+   
+    width: 90%;
+    
+}
+.Card{
+    height: 100%;
     
 }

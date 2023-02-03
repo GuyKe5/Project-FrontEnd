@@ -14,7 +14,7 @@
         
         async function handleSubmit(event) {    
             event.preventDefault();
-            const response = await fetch('https://localhost:7162/api/Values', {
+            const response = await fetch('https://localhost:7162/api/User/GetUserData', {
                 method: 'POST',
                 headers: {
                     'accept': '*/*',
@@ -27,17 +27,20 @@
                 })
             });
             
-            const response1 = await response.json();
-            setResponseData(response1);
-            if(response1!=null&&!response1.hasOwnProperty('error')){
-                
-               
-                props.setUser(JSON.parse(response1.user)[0]);
-                props.setIsLoggedIn(true)
-                navigate("/");
-
-
+            const responseJSON = await response.json();
+            setResponseData(responseJSON);
+            if(responseJSON!=null&&!responseJSON.hasOwnProperty('error')){
+                handleLogin(responseJSON);    
             }
+            function handleLogin  (userData){
+                props.setUser(userData);
+                props.setIsLoggedIn(true);
+                localStorage.setItem('user', JSON.stringify(userData));
+                localStorage.setItem('isLoggedIn', true);
+
+                navigate("/")
+              }
+
         }
         
 
