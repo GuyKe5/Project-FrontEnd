@@ -8,6 +8,7 @@ import Course from"../pages/Course/Course"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
+
 import React, { useState, useEffect } from 'react';
 function App() {
   const[IsLoggedIn,setIsLoggedIn] = React.useState(false)
@@ -17,7 +18,6 @@ function App() {
     const isLoggedInData = localStorage.getItem("isLoggedIn");
     if (userData!== null && isLoggedInData=='true') {
     const userData = JSON.parse(localStorage.getItem("user"));
-      console.log(userData);
       setUser(userData);
       setIsLoggedIn(localStorage.getItem("isLoggedIn"));
     }
@@ -32,7 +32,11 @@ function App() {
         <Route path="/" element={<Home User={User} setUser={setUser} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
         <Route path="/Question/:id" element ={<Question/>} />
         <Route path="/ListCourses" element ={<ListCourses/>} />
-        <Route path="/Course/:id" element ={<Course/>} />
+        {/* <Route path="/Course" element={<Course User={User} id={location.state?.id} />} /> */}
+
+        <Route path="/Course/:id" element={<Course User={User}  />} />
+
+
         <Route path="/Login" element ={<Login User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
       </Routes>
 

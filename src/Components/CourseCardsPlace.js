@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Ccard from "./Ccard";
 import "./ComponentsCss.css";
 function CourseCardsPlace(props) {
-    console.log(props);
     let responseJSON;
     const [response, setResponse] = useState([]);
     async function callApi(id) {
@@ -15,7 +14,6 @@ function CourseCardsPlace(props) {
         }
       );
       responseJSON = await apiResponse.json();
-      console.log(responseJSON);
       setResponse(responseJSON.map((item) => {
         return (
           <Ccard 
@@ -24,6 +22,7 @@ function CourseCardsPlace(props) {
             date={item.date.split('T')[0]}
             description={item.description}
             id={item.id}
+            User={props.User}
           />
         )
       }));
