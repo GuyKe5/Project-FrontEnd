@@ -31,7 +31,12 @@ function QuestionTable(props) {
 
 function Course(props) {
   const location = useLocation();
-  const [courseName,setCourseName]  =useState(location.state.courseName);
+  let cn 
+  if(location.state){
+    cn =location.state.courseName
+  }
+ 
+  const [courseName,setCourseName]  =useState(cn);
   const [tableQuestions, setTableQuestions] = useState();
   const [responseJSON, setResponseJSON] = useState();
   const { id } = useParams();
