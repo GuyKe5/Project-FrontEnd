@@ -1,38 +1,51 @@
     import React, { useState, useEffect } from 'react';
     import { Navigate } from 'react-router-dom';
     import { useNavigate } from 'react-router-dom'
-    import "./Register.css"
+    import "../Login/Login.css"
+    import Login from "../Login/Login";
 
     function Register(props){
         const navigate = useNavigate();
-        const [formData, setFormData] = useState({ username: '', password: '' });
+        const [formData, setFormData] = useState({ username: '', password: '' ,email:''});
         const[ResponseData,setResponseData]= useState()
         function handleChange(event) {
             const { name, value } = event.target;
             setFormData(prevData => ({ ...prevData, [name]: value }));
         }
+       
         
         async function handleSubmit(event) {    
             event.preventDefault();
-            const response = await fetch('https://localhost:7162/api/User/GetUserData', {
-                method: 'POST',
+            const response = await fetch('https://localhost:7162/api/User/Register', {
+                method: 'PUT',
                 headers: {
                     'accept': '*/*',
                     'Content-Type': 'application/json'
                 },
-                // body: '{\n"username":"1",\n"password":"1"\n}',
+                //  body: '{\n"username":"yosi",\n"password":"123",\n"email": "dfd"\n}',
                 body: JSON.stringify({
                     'username': formData.username,
-                    'password': formData.password
+                    'password': formData.password,
+                    'email':    formData.email 
                 })
+               
             });
             
-            const responseJSON = await response.json();
+            
+            console.log(response)
 
-            setResponseData(responseJSON);
-            if(responseJSON!=null&&!responseJSON.hasOwnProperty('error')){
+            if(response!=null&&response.ok){
                 //succses
+            console.log("logged in")
+            props.setUser(formData);
+            props.setIsLoggedIn(true);
+            localStorage.setItem('user', JSON.stringify(formData));
+            localStorage.setItem('isLoggedIn', true);
+
+            navigate("/")
             }
+
+           
 
         }
         
@@ -42,7 +55,7 @@
 
         return(
 
-            <div className="Register">
+            <div className="Login">
                 <form onSubmit={handleSubmit}>
                 <h1>Register</h1>
                 <div className="space">
@@ -55,7 +68,7 @@
                         :סיסמא
                 </div>
                 <div className="space">
-                <input type="email" name="email" value={formData.email} onChange={handleChange} />
+                <input type="text" name="email" value={formData.email} onChange={handleChange} />
                     email:
                 </div>
                 <button type="submit">Submit</button>

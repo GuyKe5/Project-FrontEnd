@@ -1,6 +1,7 @@
     import React, { useState, useEffect } from 'react';
     import { Navigate } from 'react-router-dom';
     import { useNavigate } from 'react-router-dom'
+    import { Link } from "react-router-dom";
     import "./Login.css"
 
     function Login(props){
@@ -64,6 +65,7 @@
                 </div>
                 <button type="submit">Submit</button>
                 <div style={{ color: 'red'  }}>{ResponseData!=null&&ResponseData.hasOwnProperty('error') && ResponseData.error}</div>
+                <Link to={"/Register/"}>register</Link>
                 </form>
             </div>
         )
