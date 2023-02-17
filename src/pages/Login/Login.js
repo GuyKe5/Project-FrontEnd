@@ -15,6 +15,7 @@
         
         async function handleSubmit(event) {    
             event.preventDefault();
+            try{
             const response = await fetch('https://localhost:7162/api/User/GetUserData', {
                 method: 'POST',
                 headers: {
@@ -33,6 +34,7 @@
             if(responseJSON!=null&&!responseJSON.hasOwnProperty('error')){
                 handleLogin(responseJSON);    
             }
+        
             function handleLogin  (userData){
                 props.setUser(userData);
                 props.setIsLoggedIn(true);
@@ -41,6 +43,10 @@
 
                 navigate("/")
               }
+            }
+            catch{
+                setResponseData({error:"fetch failed maybe server not running"})
+            }
 
         }
         

@@ -20,6 +20,7 @@ function Register(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    
     const response = await fetch("https://localhost:7162/api/User/Register", {
       method: "PUT",
       headers: {
