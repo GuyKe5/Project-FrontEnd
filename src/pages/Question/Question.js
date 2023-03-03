@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 function Question(props) {
   const [questionData, setQuestionData] = useState();
   const [responseJSON, setResponseJSON] = useState();
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(" ");
   const { id } = useParams();
   async function GetQuestionsFromApi() {
     const response = await fetch(

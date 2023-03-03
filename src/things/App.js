@@ -7,6 +7,7 @@ import Login from"../pages/Login/Login"
 import Course from"../pages/Course/Course"
 import Register from"../pages/Register/Register"
 import AddCourse from"../pages/AddCourse/AddCourse"
+import MyCourses from"../pages/MyCourses/MyCourses"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
@@ -42,6 +43,7 @@ function App() {
 
         <Route path="/Login" element ={<Login User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
         <Route path="/AddCourse" element ={<AddCourse User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
+        <Route path="/MyCourses" element ={<MyCourses User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
       </Routes>
 
     </div>

@@ -37,7 +37,6 @@ function Course(props) {
   }
  
   const [courseName,setCourseName]  =useState(cn);
-  const [tableQuestions, setTableQuestions] = useState();
   const [responseJSON, setResponseJSON] = useState();
   const { id } = useParams();
   async function GetQuestionsFromApi() {
@@ -60,7 +59,6 @@ function Course(props) {
   useEffect(() => {
     const GetData = async () => {
       const data = await GetQuestionsFromApi();
-      setTableQuestions(data);
     };
     GetData();
   }, []);

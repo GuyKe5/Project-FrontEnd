@@ -14,6 +14,7 @@ return(
             <Nav.Link as={Link} to="/ListCourses" >Courses</Nav.Link>
             <Nav.Link as={Link} to="/Login"> Login </Nav.Link>
             <Nav.Link as={Link} to="/AddCourse"> Create Course </Nav.Link>
+            <Nav.Link as={Link} to="/MyCourses"> My Courses</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
