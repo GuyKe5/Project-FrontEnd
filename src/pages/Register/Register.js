@@ -36,7 +36,6 @@ function Register(props) {
     });
 
     setResponseData(response);
-    console.log(response);
    
     if (response.status == "404") {
       setErrorMsg("username already taken");

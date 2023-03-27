@@ -1,0 +1,15 @@
+.space{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+    margin-bottom: 5%;
+}
+.AddQuestion{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+     height: 50%;
+}

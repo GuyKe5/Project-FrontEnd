@@ -11,12 +11,12 @@ if(props.courses){
           <tr key={Course.id}>
             <td>{index + 1}</td>
             <td>{Course.name}</td>
-            <td>{<Link to={"/"}>edit</Link>}</td>
+            <td>{ <Link as={Link} to= {"/AddQuestion/"} state={{ courseId: Course.id}}> Course </Link>}</td>
+            {/* <td>{<Link to={"/AddQuestion"}>edit</Link>}</td> */}
             
           </tr>
         );
       });
-      console.log(CourseRows)
     }
       return (
         <Table striped bordered hover variant="dark">
