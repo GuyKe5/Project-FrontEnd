@@ -15,7 +15,6 @@ function MyCourses(props){
             }
         });
         const responseJson = await response.json()
-        console.log(responseJson)
         setCourses( responseJson)
     }
     }
@@ -25,7 +24,7 @@ function MyCourses(props){
         
     }
 
-    useState(CallApi,[])
+    useEffect(()=>{CallApi()},[props.User])
     
     return(
 

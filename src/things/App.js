@@ -9,6 +9,7 @@ import Register from"../pages/Register/Register"
 import AddCourse from"../pages/AddCourse/AddCourse"
 import MyCourses from"../pages/MyCourses/MyCourses"
 import AddQuestion from"../pages/AddQuestion/AddQuestion"
+import Test from"../pages/Test/Test"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
@@ -37,6 +38,7 @@ function App() {
         <Route path="/Question/:id" element ={<Question/>} />
         <Route path="/ListCourses" element ={<ListCourses/>} />
         <Route path="/Register" element ={<Register User={User} setUser={setUser} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path="/Test" element ={<Test User={User} IsLoggedIn={IsLoggedIn}/>} />
         {/* <Route path="/Course" element={<Course User={User} id={location.state?.id} />} /> */}
 
         <Route path="/Course/:id" element={<Course User={User}  />} />

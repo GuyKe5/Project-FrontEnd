@@ -49,7 +49,7 @@ function AddQuestion(props) {
     try {
       
        const response = await fetch(
-        "https://localhost:7162/api/Course/AddQuestion",
+        "https://localhost:7162/api/Question/AddQuestion",
         {
           method: "PUT",
           headers: {
@@ -91,6 +91,15 @@ function AddQuestion(props) {
             type="text"
             name="description"
             value={formData.description}
+            onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
+          />
+          </Form.Group>
+           <Form.Group controlId="baseCode">
+          <Form.Label>קוד התחלתי:</Form.Label>
+          <Form.Control
+            type="text"
+            name="baseCode"
+            value={formData.baseCode}
             onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
           />
         </Form.Group>
