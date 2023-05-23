@@ -1,8 +1,13 @@
 import {useState,useEffect} from "react"
+import { useNavigate } from "react-router-dom";
 import "../Login/Login.css";
 function AddCourse(props){
+   
+    const navigate = useNavigate();
+     useEffect(()=>{if(!props.IsLoggedIn){navigate('/login')}},[])
     const [formData,setFormData] = useState({name:'',description:''});
     const [msg,setMsg] = useState("")
+   
     async function handleSubmit(event){
         event.preventDefault();
         try{

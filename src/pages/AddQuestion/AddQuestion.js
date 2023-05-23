@@ -1,16 +1,18 @@
 import React, { useState ,useEffect} from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { json, useLocation, useParams } from "react-router-dom";
  import { useNavigate } from 'react-router-dom'
 import { Button, Card, Form } from "react-bootstrap";
 
 import "./AddQuestion.css";
 
 function AddQuestion(props) {
+  const [msg, setMsg] = useState("");
   const location = useLocation();
   let ci
+  let question
   if(location.state){
     ci =location.state.courseId
-    console.log(ci)
+    question =location.state.question
   }
 
   const navigate = useNavigate();
@@ -20,16 +22,61 @@ function AddQuestion(props) {
     courseId: ci,
     questionname: "",
     description: "",
-    soulutionCode: "",
+    soulutionCode: "", 
+    baseCode: "",
     tests: [{ input: "", output: "", name: "" }],
+    edit: -1,
   });
  
   const  [response,setResponse] =useState()
   useEffect(() => {
-    if (props.question) {
-      setFormData(props.question);
+    if (location.state.question) {
+      async function fetchData() {
+        try {
+          const questionResponse = await fetch(
+            `https://localhost:7162/api/Course/GetFullQuestionFromQuestionId?qId=${location.state.question.id}`,
+            {
+              headers: {
+                Accept: "*/*",
+              },
+            }
+          );
+  
+          const testsResponse = await fetch(
+            `https://localhost:7162/api/Question/GetTestFromQuestionId?id=${location.state.question.id}`,
+            {
+              headers: {
+                accept: "*/*",
+              },
+            }
+          );
+  
+          if (questionResponse.ok && testsResponse.ok) {
+            const questionData = await questionResponse.json();
+            const tests = await testsResponse.json();
+              console.log(questionData.id)
+            setFormData((prevData) => ({
+              ...prevData,
+              questionname: questionData && questionData.name ? questionData.name : "",
+              writerId: props.User?.id || '', 
+              description: questionData && questionData.prompt ? questionData.prompt : "",
+              soulutionCode: questionData && questionData.solution ? questionData.solution : "",
+              baseCode: questionData && questionData.baseCode ? questionData.baseCode : "",
+              tests: tests ? tests : [{ input: "", output: "", name: "" }],
+              edit: questionData && questionData.id ? questionData.id : -1,
+            }));
+          } else {
+            console.log("Error retrieving question and tests data");
+          }
+        } catch (error) {
+          console.log("Error fetching question and tests:", error);
+        }
+      }
+  
+      fetchData();
     }
-  }, [props.question]);
+  }, [location.state.question]);
+  
 
   function handleChange(event, index) {
     const { name, value } = event.target;
@@ -62,8 +109,8 @@ function AddQuestion(props) {
       );
       setResponse(response)
       
-      console.log(response);
       if (response.ok) {
+        setMsg("success adding question");
         console.log("success adding question");
       }
     } catch {
@@ -159,6 +206,7 @@ function AddQuestion(props) {
           submit
     </Button> 
     <div style={{ color: 'red'  }}>{(response!=null&&response.status!=200 )&& "couldn't add questoin pls try again later"}</div>
+    <div style={{color:'green'}}>{msg}</div>
   </Form>
 </div>
 );

@@ -73,10 +73,10 @@ function Question(props) {
       <div className="Code">
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label><Button variant="primary" type="submit">
-        Submit
-      </Button>
-      <Link as={Link} to= {"/Test/"} state={{ code: code ,StarTest:tests, solution:(questionData),qId:id}}> submit </Link>
+            <Form.Label>   
+              
+                 <Link as={Link} to= {"/Test/"} state={{ code: code ,StarTest:tests, solution:(questionData),qId:id}}> submit </Link>
+
       </Form.Label>
             <Form.Control
               name="code"

@@ -1,19 +1,21 @@
-import "./Course.css";
-import Table from "react-bootstrap/Table";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-function QuestionTable(props) {
-  const questionRows = props.questions.map((question, index) => {
-    return (
-      <tr key={question.id}>
-        <td>{index + 1}</td>
-        <td>{question.name}</td>
-        <td><Link to={`/Question/${question.id }`}>link</Link></td>
-        <td>{question.status}</td>
-      </tr>
-    );
-  });
+import Table from "react-bootstrap/Table";
+import "./Course.css";
+
+function QuestionTable({ questions }) {
+  const questionRows = questions.map((question, index) => (
+    <tr key={question.id}>
+      <td>{index + 1}</td>
+      <td>{question.name}</td>
+      <td>
+        <Link to={`/Question/${question.id}`}>link</Link>
+      </td>
+      <td>{question.status}</td>
+    </tr>
+  ));
+
   return (
     <Table striped bordered hover variant="dark">
       <thead>
@@ -21,7 +23,7 @@ function QuestionTable(props) {
           <th>#</th>
           <th>Question Name</th>
           <th>Question id</th>
-          <th>status</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>{questionRows}</tbody>
@@ -31,43 +33,91 @@ function QuestionTable(props) {
 
 function Course(props) {
   const location = useLocation();
-  let cn 
-  if(location.state){
-    cn =location.state.courseName
-  }
- 
-  const [courseName,setCourseName]  =useState(cn);
-  const [responseJSON, setResponseJSON] = useState();
   const { id } = useParams();
-  async function GetQuestionsFromApi() {
-    const response = await fetch(
-      `https://localhost:7162/api/Course/GetQuestionsFromCourseId?courseId=${id}&userId=${props.User.id}`,
+  const [courseName, setCourseName] = useState("");
+  const [responseJSON, setResponseJSON] = useState(null);
+  const [isEnrolled, setIsEnrolled] = useState(false);
+
+  useEffect(() => {
+    if (location.state) {
+      setCourseName(location.state.courseName);
+    }
+
+    async function checkIfEnrolled() {
+      const response = await fetch(
+        `https://localhost:7162/api/Course/CheckIfEnrolled?UserId=${props.User.id}&CourseId=${id}`,
+        {
+          headers: {
+            accept: "*/*",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setIsEnrolled(true);
+      }
+    }
+
+    checkIfEnrolled();
+  }, [location.state, props.User.id, id]);
+
+  useEffect(() => {
+    async function getQuestionsFromApi() {
+      const response = await fetch(
+        `https://localhost:7162/api/Course/GetQuestionsFromCourseId?courseId=${id}&userId=${props.User.id}`,
+        {
+          headers: {
+            Accept: "*/*",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setResponseJSON(data);
+      } else {
+        console.log("Error getting course data");
+      }
+    }
+
+    if (isEnrolled) {
+      getQuestionsFromApi();
+    }
+  }, [isEnrolled, id, props.User.id]);
+
+   const enrollUser = async () => {
+    if(!props.IsLoggedIn){
+      alert("you need to login first")
+      return;
+    }
+    const enrollResponse = await fetch(
+      `https://localhost:7162/api/Course/Enroll?userId=${props.User.id}&courseId=${id}`,
       {
+        method: "PUT",
         headers: {
-          Accept: "*/*",
+          accept: "*/*",
         },
       }
     );
-    if (!response.ok) {
-      console.log("error getting Course data");
-    } else {
-      setResponseJSON(await response.json());
-      return responseJSON;
-    }
-  }
 
-  useEffect(() => {
-    const GetData = async () => {
-      const data = await GetQuestionsFromApi();
-    };
-    GetData();
-  }, []);
+    if (enrollResponse.ok) {
+      // User enrolled successfully
+      setIsEnrolled(true);
+    } else {
+      console.log("Error enrolling");
+    }
+  };
 
   return (
     <div className="course">
       <h1>{courseName}</h1>
-      {responseJSON != null && <QuestionTable questions={responseJSON} />}
+      {isEnrolled ? (
+        responseJSON != null && <QuestionTable questions={responseJSON} />
+      ) : (
+       <>you need to <button onClick={enrollUser}>Enroll</button> in order see the course</>
+      )}
     </div>
   );
 }
+
 export default Course;

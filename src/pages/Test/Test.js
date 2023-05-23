@@ -44,7 +44,7 @@ function Test(props){
     }
     }
     catch(exce){
-        console.log("error at try in CallApi at myCourses exce: "+exce)
+        console.log("error at try in CallApi at Test exce: "+exce)
     }
         
     }
@@ -60,6 +60,7 @@ function Test(props){
                 <div>
                 <Link to={`/Question/${qId}`}>נסה שוב</Link>
                 <Button variant="primary" onClick={()=>{ setShowSoulution((prev)=>{return !prev})}}>
+
         ראה פתרון
       </Button>
 

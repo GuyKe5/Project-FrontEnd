@@ -11,7 +11,7 @@ if(props.courses){
           <tr key={Course.id}>
             <td>{index + 1}</td>
             <td>{Course.name}</td>
-            <td>{ <Link as={Link} to= {"/AddQuestion/"} state={{ courseId: Course.id}}> Course </Link>}</td>
+            <td>{ <Link as={Link} to= {"/CoursePanel/"} state={{ courseId: Course.id, course:Course}}> Course </Link>}</td>
             {/* <td>{<Link to={"/AddQuestion"}>edit</Link>}</td> */}
             
           </tr>
