@@ -94,7 +94,7 @@ function Register(props) {
             value={formData.email}
             onChange={handleChange}
           />
-          email:
+          email
         </div>
         <button type="submit">Submit</button>
         <div style={{ color: "red" }}>{errorMsg}</div>

@@ -1,0 +1,4 @@
+add admin account that can delete questions.
+add option to add questoin from the course panel
+there is a bug in AddCourse if i refresh i get redirected to login
+create course is not working.

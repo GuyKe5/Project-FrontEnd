@@ -58,7 +58,9 @@
 
             <div className="Login">
                 <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
+                <h1 style={{ marginBottom: '8%' }}>Login</h1>
+
+
                 <div className="space">
                 <input type="text" name="username" value={formData.username} onChange={handleChange} />
                         :שם משתמש   
@@ -71,7 +73,8 @@
                 </div>
                 <button type="submit">Submit</button>
                 <div style={{ color: 'red'  }}>{ResponseData!=null&&ResponseData.hasOwnProperty('error') && ResponseData.error}</div>
-                <Link to={"/Register/"}>register</Link>
+                <br/>
+             dont have an account yet?   <Link to={"/Register/"}>register</Link>
                 </form>
             </div>
         )

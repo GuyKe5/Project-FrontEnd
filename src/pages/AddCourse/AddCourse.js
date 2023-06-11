@@ -7,6 +7,7 @@ function AddCourse(props){
      useEffect(()=>{if(!props.IsLoggedIn){navigate('/login')}},[])
     const [formData,setFormData] = useState({name:'',description:''});
     const [msg,setMsg] = useState("")
+    const [goodMsg,setGoodMsg]=useState("")
    
     async function handleSubmit(event){
         event.preventDefault();
@@ -27,7 +28,7 @@ function AddCourse(props){
         if(response.ok){
             
             console.log("succes adding course")
-
+            setGoodMsg("The course was added succefully")
         }
 
 
@@ -46,7 +47,7 @@ function AddCourse(props){
     return(
         
         <div className="AddCourse">
-            <h1>Creat Course</h1>
+            <h1>Create Course</h1>
             <form onSubmit={handleSubmit}>
                 <div className="space">
                 <input type="text" name="name" value={formData.name} onChange={handleChange}/>
@@ -58,6 +59,7 @@ function AddCourse(props){
                 </div>
                 <button type="submit"> submit</button>
                 <div style={{ color: 'red'  }}>{msg}</div>
+                <div style={{ color: 'green'  }}>{goodMsg}</div>
             </form>
 
                 

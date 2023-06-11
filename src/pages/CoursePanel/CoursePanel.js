@@ -53,7 +53,7 @@ function CoursePanel(props) {
 
   useEffect(() => {
     if (location.state) {
-      setCourseName(location.state.courseName);
+      setCourseName(location.state.course.name);
     }
     async function checkIfOwner() {
         if(!props.User.id){return}
@@ -103,7 +103,7 @@ useEffect(() => {
 
   return (
     <div className="course">
-      <h1>{courseName}</h1>  
+      <h1>Course Panel - {courseName}</h1>  
       {isOwner ? (
         responseJSON != null && <QuestionPanel questions={responseJSON} id={id} /> 
       ) : (

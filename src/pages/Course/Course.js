@@ -22,7 +22,7 @@ function QuestionTable({ questions }) {
         <tr>
           <th>#</th>
           <th>Question Name</th>
-          <th>Question id</th>
+          <th>question</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -110,7 +110,7 @@ function Course(props) {
 
   return (
     <div className="course">
-      <h1>{courseName}</h1>
+      <h1 style={{marginBottom:'2%'}}>{courseName}</h1>
       {isEnrolled ? (
         responseJSON != null && <QuestionTable questions={responseJSON} />
       ) : (

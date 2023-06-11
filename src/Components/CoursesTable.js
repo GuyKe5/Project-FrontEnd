@@ -24,9 +24,8 @@ if(props.courses){
             <tr>
               <th>#</th>
               <th>Course Name</th>
-              <th>Enrolled </th>
-              <th>questions </th>
-              <th>Edit Course</th>
+              <th> Edit Course </th>
+              
             </tr>
           </thead>
           <tbody>{CourseRows}</tbody>

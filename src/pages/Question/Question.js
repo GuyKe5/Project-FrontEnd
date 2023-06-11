@@ -75,7 +75,24 @@ function Question(props) {
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>   
               
-                 <Link as={Link} to= {"/Test/"} state={{ code: code ,StarTest:tests, solution:(questionData),qId:id}}> submit </Link>
+            <Link
+  as={Link}
+  to={"/Test/"}
+  state={{ code: code, StarTest: tests, solution: questionData, qId: id }}
+  style={{
+    display: 'inline-block',
+    padding: '10px',
+    backgroundColor: 'blue', 
+    color: 'white', 
+    textDecoration: 'none',
+    borderRadius: '5px',
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+  }}
+>
+  submit
+</Link>
+
+ 
 
       </Form.Label>
             <Form.Control
@@ -94,7 +111,6 @@ function Question(props) {
           {questionData && questionData.name}
         </h1>
         <div className="discription">{questionData && questionData.prompt}</div>
-        <a href="  ">name</a>
       </div>
     </div>
   );
