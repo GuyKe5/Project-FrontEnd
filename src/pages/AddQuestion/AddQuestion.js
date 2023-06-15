@@ -3,6 +3,7 @@ import { json, useLocation, useParams } from "react-router-dom";
  import { useNavigate } from 'react-router-dom'
 import { Button, Card, Form } from "react-bootstrap";
 
+
 import "./AddQuestion.css";
 
 function AddQuestion(props) {
@@ -10,6 +11,7 @@ function AddQuestion(props) {
   const location = useLocation();
   let ci
   let question
+
   if(location.state){
     ci =location.state.courseId
     question =location.state.question
@@ -30,7 +32,7 @@ function AddQuestion(props) {
  
   const  [response,setResponse] =useState()
   useEffect(() => {
-    if (location.state.question) {
+    if (location.state &&location.state.question) {
       async function fetchData() {
         try {
           const questionResponse = await fetch(
@@ -75,7 +77,7 @@ function AddQuestion(props) {
   
       fetchData();
     }
-  }, [location.state.question]);
+  }, [location.state]);
   
 
   function handleChange(event, index) {
@@ -94,7 +96,7 @@ function AddQuestion(props) {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      
+      console.log(formData)
        const response = await fetch(
         "https://localhost:7162/api/Question/AddQuestion",
         {

@@ -40,13 +40,13 @@ function CourseCardsPlace(props) {
     }
   }, [props.user, props.isLoggedIn]);
 
-  return (
-    <div className="CardsWrap">
+  return ( <>
+    <h1>הקורסים שלי</h1>
+    <div className="CardsWrap2" >
       {response}
-      <h2 style={{ textAlign: "center", height: "100%", marginTop: "auto", marginBottom: "auto" }}>
-        הקורסים שלי
-      </h2>
+     
     </div>
+    </>
   );
 }
 

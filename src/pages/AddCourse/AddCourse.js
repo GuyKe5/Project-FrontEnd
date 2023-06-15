@@ -21,7 +21,8 @@ function AddCourse(props){
             // body: '\n{\n"name":"f"\n}',
             body: JSON.stringify({
                 'name': formData.name,
-                'description' : formData.description
+                'description' : formData.description,
+                'writer' : props.User.id
             })
         });
         console.log(response)

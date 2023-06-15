@@ -23,6 +23,8 @@ function QuestionPanel({ questions ,id}) {
 
   return (
     <Table striped bordered hover variant="dark">
+      {/* //add button to add question */}
+
       <thead>
         <tr>
           <th>#</th>
@@ -105,12 +107,18 @@ useEffect(() => {
     <div className="course">
       <h1>Course Panel - {courseName}</h1>  
       {isOwner ? (
-        responseJSON != null && <QuestionPanel questions={responseJSON} id={id} /> 
+        <>
+          {responseJSON != null && <QuestionPanel questions={responseJSON} id={id} />}
+         
+          <Link as={Link} to={ "/AddQuestion/"} state= {{ courseId: id }} >Add Question</Link>
+
+        </>
       ) : (
-       <>you need to be the owner of this course to edit</>
+        <p>You need to be the owner of this course to edit.</p>
       )}
     </div>
   );
+  
 }
 
 export default CoursePanel;

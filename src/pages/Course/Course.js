@@ -80,7 +80,7 @@ function Course(props) {
       }
     }
 
-    if (isEnrolled) {
+    if (isEnrolled || props.User.isAdmin) {
       getQuestionsFromApi();
     }
   }, [isEnrolled, id, props.User.id]);
@@ -111,7 +111,7 @@ function Course(props) {
   return (
     <div className="course">
       <h1 style={{marginBottom:'2%'}}>{courseName}</h1>
-      {isEnrolled ? (
+      {isEnrolled || props.User.isAdmin ? (
         responseJSON != null && <QuestionTable questions={responseJSON} />
       ) : (
        <>you need to <button onClick={enrollUser}>Enroll</button> in order see the course</>

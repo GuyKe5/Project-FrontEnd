@@ -1,41 +1,44 @@
-.CardsWrap{
-    display: flex;
-    flex-wrap: nowrap;
-    background-color: #3f4047;
-    /* background-color: red; */
-    align-items:center;
-    justify-content:right;
-    margin-right:5%;
-    margin-left:5%;
-    padding-Right: 5%;
-    border: 1px solid #212529;
-    margin-bottom: 2%;
-    height: 22%;
-    border-radius: 5px;
-    overflow-x: auto;
-    width: 90%;
-    
-}
-.Card{
-    height: 100%;
-    
-}
-
-.CardsWrap2{
+.CardsWrap {
     display: flex;
     flex-wrap: wrap;
     background-color: #3f4047;
-    /* background-color: red; */
-    align-items:center;
-    justify-content:right;
-    margin-right:5%;
-    margin-left:5%;
-    padding-Right: 5%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-right: 5%;
+    margin-left: 5%;
+    padding-right: 5%;
     border: 1px solid #212529;
-    margin-bottom: 2%;
-    height: 22%;
     border-radius: 5px;
+    width: 100%;
     overflow-x: auto;
-    width: 90%;
+    max-height: 300px; /* Adjust the height based on your requirements */
+  }
+  
+  
+
+.CardsWrap2 {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #3f4047;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    border: 1px solid #212529;
+    border-radius: 5px;
+    width: 100%;
+
     
-}
+  }
+  
+  .Card {
+    flex-basis: 200px; /* Adjust the width as per your design requirements */
+    height: 100%;
+    margin: 10px; /* Adjust the margin as needed */
+    padding: 10px;
+    background-color: #fff; /* Set a background color for the cards */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow for a card effect */
+    
+
+  }
+  

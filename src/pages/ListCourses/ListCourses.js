@@ -34,10 +34,12 @@ function ListCourses(props) {
     , []);
   
     return (
+      <>
+        <h1> כל הקורסים</h1>
       <div className="CardsWrap2">
         {response}
-        <h2  style={{ textAlign: 'center' ,height:"100%" ,marginTop:"auto", marginBottom:"auto"}}> כל הקורסים</h2>
       </div>
+      </>
     );
   }
   export default ListCourses;

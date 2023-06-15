@@ -12,6 +12,8 @@ import AddQuestion from"../pages/AddQuestion/AddQuestion"
 import Test from"../pages/Test/Test"
 import SignOut from "../pages/Login/SignOut";
 import CoursePanel from "../pages/CoursePanel/CoursePanel";
+import AdminPage from "../pages/AdminPage/AdminPage"
+import DeleteCourse from "../pages/DeleteCourse/DeleteCourse"
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import {Route,Routes} from "react-router-dom"
@@ -34,7 +36,7 @@ function App() {
   return (
     <div className="App">
       
-      <NavBar />
+      <NavBar User ={User} />
       <Routes>
         <Route path="/" element={<Home User={User} setUser={setUser} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
         <Route path="/Question/:id" element ={<Question/>} />
@@ -52,6 +54,8 @@ function App() {
         <Route path="/MyCourses" element ={<MyCourses User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
         <Route path="/AddQuestion" element ={<AddQuestion User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
         <Route path="/CoursePanel" element ={<CoursePanel User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
+        <Route path="/AdminPage" element ={<AdminPage User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
+        <Route path="/DeleteCourse/:id" element ={<DeleteCourse User={User} IsLoggedIn={IsLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser}/>} />
       </Routes>
 
     </div>
