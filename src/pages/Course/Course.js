@@ -12,7 +12,12 @@ function QuestionTable({ questions }) {
       <td>
         <Link to={`/Question/${question.id}`}>link</Link>
       </td>
-      <td>{question.status}</td>
+      <td>
+                <span className={question.status ==  "completed" ? "text-success" : "text-warning"}>{question.status }</span>
+                
+
+
+</td>
     </tr>
   ));
 

@@ -12,7 +12,15 @@ function TestTable(props){
               <tr key={test.id}>
                 <td>{index + 1}</td>
                 <td>{test.name}</td>
-                <td>{test.status}</td>
+                <td>
+                <span className={test.status === "V" ? "text-success" : "text-warning"}>{test.status}</span>
+
+
+</td>
+
+
+
+
                 
               </tr>
             );

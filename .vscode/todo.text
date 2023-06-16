@@ -1,7 +1,8 @@
 add admin account that can delete questions. VVVVVVV
 add option to add questoin from the course panel    VVVVVV
 create course is not working.  VVVVV
+make in progress stuff work  VVVV
 there is a bug in AddCourse if i refresh i get redirected to login
-make in progress stuff work
 Make checking and running code word
 maybe add try and catch at app if there is an error to redirect to somewhere safe.
+complicated sql

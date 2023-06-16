@@ -1,68 +1,59 @@
-import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Login/Login.css";
-import Login from "../Login/Login";
 
 function Register(props) {
   const navigate = useNavigate();
-   const[errorMsg,setErrorMsg]=useState('')
+  const [errorMsg, setErrorMsg] = useState("");
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     email: "",
   });
-  const [ResponseData, setResponseData] = useState();
+  const [isLoading, setIsLoading] = useState(false); 
+
   function handleChange(event) {
     const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const updatedValue = value.trim();
+    setFormData((prevData) => ({ ...prevData, [name]: updatedValue }));
   }
+  
 
   async function handleSubmit(event) {
     event.preventDefault();
-    
-    const response = await fetch("https://localhost:7162/api/User/Register", {
-      method: "PUT",
-      headers: {
-        accept: "*/*",
-        "Content-Type": "application/json",
-      },
-      //  body: '{\n"username":"yosi",\n"password":"123",\n"email": "dfd"\n}',
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-        email: formData.email,
-      }),
-    });
+    setIsLoading(true); 
 
-    setResponseData(response);
-   
-    if (response.status == "404") {
-      setErrorMsg("username already taken");
-    } 
-    else if (response.status != "200") {
-      setErrorMsg("unknown error");
-      }
-    
+    try {
+      const response = await fetch("https://localhost:7162/api/User/Register", {
+        method: "PUT",
+        headers: {
+          accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+          email: formData.email,
+        }),
+      });
 
-    if (response != null && response.ok) {
+      if (response.status === 404) {
+        setErrorMsg("Username already taken");
+      } else if (response.status === 403) {
+        setErrorMsg("Email is not valid");
+      } else if (response.status !== 200) {
+        setErrorMsg("Unknown error");
+      } else {
         setErrorMsg("");
-      //succses
-      console.log("logged in");
-      props.setUser(formData);
-      props.setIsLoggedIn(true);
-      localStorage.setItem("user", JSON.stringify(formData));
-      localStorage.setItem("isLoggedIn", true);
-      navigate("/");
+       
+        navigate("/Login");
+      }
+    } catch (error) {
+      console.error("Request error:", error);
+      setErrorMsg("An error occurred. Please try again.");
     }
-    else{
-        if (response.status == "404") {
-            setErrorMsg("username already taken");
-          } 
-          else  {
-            setErrorMsg("unknown error");
-            }
-    }
+
+    setIsLoading(false); // Set loading state back to false after response is received
   }
 
   return (
@@ -96,7 +87,10 @@ function Register(props) {
           />
           email
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Submit"}
+        </button>
+        {isLoading && <div>Loading...</div>} {/* Display loading message or spinner */}
         <div style={{ color: "red" }}>{errorMsg}</div>
       </form>
     </div>

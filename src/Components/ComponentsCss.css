@@ -42,3 +42,10 @@
 
   }
   
+  .text-success{
+    color: green;
+  }
+  .text-warning{
+    color:yellow;
+    
+  }

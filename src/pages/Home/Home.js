@@ -2,7 +2,10 @@ import Qcard from "../../Components/Ccard"
 import CourseCardsPlace from "../../Components/CourseCardsPlace";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { useEffect , useState } from "react";
 function Home(props) {
+
+  
     
     return (
         <div className="Home">

@@ -11,6 +11,7 @@ if(props.courses){
           <tr key={Course.id}>
             <td>{index + 1}</td>
             <td>{Course.name}</td>
+            <td>{Course.enrolled}</td>
             <td>{ <Link as={Link} to= {"/CoursePanel/"} state={{ courseId: Course.id, course:Course}}> Course </Link>}</td>
             {/* <td>{<Link to={"/AddQuestion"}>edit</Link>}</td> */}
             
@@ -24,6 +25,7 @@ if(props.courses){
             <tr>
               <th>#</th>
               <th>Course Name</th>
+              <th>Enrollments</th>
               <th> Edit Course </th>
               
             </tr>

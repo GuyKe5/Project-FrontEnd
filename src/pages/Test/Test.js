@@ -41,8 +41,48 @@ function Test(props){
         const responseJson = await response.json()
        
         setTests(responseJson)
+         // check if all tests are passed
+            let isPassed = true;
+            for (let i = 0; i < responseJson.length; i++) {
+                if (responseJson[i].status !== "completed") {
+                    isPassed = false;
+                    break;
+                }
+            }
+            if (isPassed) { // change statud to compelted
+                 const response = await fetch('https://localhost:7162/api/Question/ChangeStatus', {
+                    method: 'PUT',
+                    headers: {
+                        'accept': '*/*',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'user_id': props.User.id,
+                        'question_id': qId,
+                        'status': 'completed'
+                    })
+                });
     }
+    else{
+        console.log("not all tests passed")
+        //change status to incomplete
+        const response = await fetch('https://localhost:7162/api/Question/ChangeStatus', {
+            method: 'PUT',
+            headers: {
+                'accept': '*/*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'user_id': props.User.id,
+                'question_id': qId,
+                'status': 'incomplete'
+            })
+        });
+
     }
+
+    }
+}
     catch(exce){
         console.log("error at try in CallApi at Test exce: "+exce)
     }

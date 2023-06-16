@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Button, Alert, Breadcrumb, Card } from "react-bootstrap/";
 import { useEffect, useState } from "react";
 function Ccard(props) {
-  // const [course,setCourse] = useState(props.);
   return (
     <Card className="Card">
       <Card.Body>
