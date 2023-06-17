@@ -23,8 +23,8 @@ function AddQuestion(props) {
     writerId: props.User?.id || '', 
     courseId: ci,
     questionname: "",
-    description: "",
-    soulutionCode: "", 
+    prompt: "",
+    soulution: "", 
     baseCode: "",
     tests: [{ input: "", output: "", name: "" }],
     edit: -1,
@@ -61,8 +61,8 @@ function AddQuestion(props) {
               ...prevData,
               questionname: questionData && questionData.name ? questionData.name : "",
               writerId: props.User?.id || '', 
-              description: questionData && questionData.prompt ? questionData.prompt : "",
-              soulutionCode: questionData && questionData.solution ? questionData.solution : "",
+              prompt: questionData && questionData.prompt ? questionData.prompt : "",
+              soulution: questionData && questionData.solution ? questionData.solution : "",
               baseCode: questionData && questionData.baseCode ? questionData.baseCode : "",
               tests: tests ? tests : [{ input: "", output: "", name: "" }],
               edit: questionData && questionData.id ? questionData.id : -1,
@@ -134,36 +134,38 @@ function AddQuestion(props) {
             onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
           />
         </Form.Group>
-        <Form.Group controlId="description">
+        <Form.Group controlId="prompt">
           <Form.Label>תיאור:</Form.Label>
           <Form.Control
             type="text"
-            name="description"
-            value={formData.description}
+            name="prompt"
+            value={formData.prompt}
             onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
           />
           </Form.Group>
            <Form.Group controlId="baseCode">
           <Form.Label>קוד התחלתי:</Form.Label>
           <Form.Control
-            type="text"
+            as="textarea"
+            rows={3}
             name="baseCode"
             value={formData.baseCode}
             onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
           />
         </Form.Group>
-        <Form.Group controlId="soulutionCode">
+        <Form.Group controlId="soulution">
           <Form.Label>פתרון:</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
-            name="soulutionCode"
-            value={formData.soulutionCode}
+            name="soulution"
+            value={formData.soulution}
             onChange={(event) => setFormData({ ...formData, [event.target.name]: event.target.value })}
           />
         </Form.Group>
 
         <h2>בדיקות</h2>
+
         {formData.tests.map((test, index) => (
           <Card key={index}>
             <Card.Body>

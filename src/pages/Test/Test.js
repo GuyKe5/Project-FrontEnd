@@ -39,12 +39,14 @@ function Test(props){
         });
         
         const responseJson = await response.json()
-       
+         // if response has error dont set tests
+         if(!responseJson.error){
         setTests(responseJson)
+         }
          // check if all tests are passed
             let isPassed = true;
             for (let i = 0; i < responseJson.length; i++) {
-                if (responseJson[i].status !== "completed") {
+                if (responseJson[i].status !== "V") {
                     isPassed = false;
                     break;
                 }
@@ -84,6 +86,7 @@ function Test(props){
     }
 }
     catch(exce){
+        tests=null;
         console.log("error at try in CallApi at Test exce: "+exce)
     }
         
@@ -94,8 +97,7 @@ function Test(props){
         <div className='Test'>
                 <h1>עמוד בדיקה</h1>
                 <TestTable tests={tests}/>
-
-                {showSoulution&&<p>{solution}</p>}
+{showSoulution && <textarea style={{ width: "550px", height: "250px" }}>{solution}</textarea>}
 
                 <div>
                 <Link to={`/Question/${qId}`}>נסה שוב</Link>

@@ -5,8 +5,9 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 
 function TestTable(props){
+  console.log(props.tests)
     let tests;
-    if(props.tests){
+    if(props.tests!=null){
             tests = props.tests.map((test, index) => {
             return (
               <tr key={test.id}>
